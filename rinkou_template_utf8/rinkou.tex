@@ -33,11 +33,11 @@
 \section{はじめに}
 インターネットの世界的な普及により，IPv4アドレスの国際的な在庫(IANA Pool)が，2011年2月3日に枯渇した．また，2011年4月15日には，アジア太平洋地域のRIR(APNIC)の在庫も枯渇した．
 
-現在は，未使用アドレスの再利用や，NAPTなどによって対応している．アドレスの価格も上昇しており，インターネットの発展を妨げている．
+現在は，未使用アドレスの再利用や，NAPTなどによって対応している．アドレスの価格も上昇しており\cite{price}，インターネットの発展を妨げている．
 
 この問題を解決するためには，IPv4の後継規格であるIPv6を推進することが必要である．現状のIPv4でのネットワーク環境を，IPv6で引き継ぐためには，IPv4と同等以上の性能が求められる．
 
-本研究では，IPv6ネットワークの現状を把握するため，IPv4との通信品質の比較という観点でのネットワーク計測を実施する．
+本研究では，エンドユーザーから見たIPv6ネットワークの現状を把握するため，IPv4との通信品質の比較という観点でのネットワーク計測を実施し，通信遅延と帯域幅をもとに，得られた結果を分析する．
 
 \section{既存研究}
 \subsection{RTTによる比較}
@@ -61,52 +61,48 @@ TTLは，IPヘッダに設定されている値で，パケットがルータを
 地域毎の通信路の特徴を分析している．IPv4とIPv6のホップ数を比較することで，トポロジがどれくらい違うのかを推測している．
 
 \subsection{先行研究との違い}
-\cite{kitaguchi2}では，ネットワーク環境を推定するにとどまっているので，ネットワーク環境の推定手法を借りて，品質の比較まで行う．また，\cite{kitaguchi1}では，通信遅延のみを品質として評価していたが，帯域幅も計測し，評価する．
+\cite{kitaguchi2}では，ネットワーク環境を推定するにとどまっているので，ネットワーク環境の推定手法を借りて，品質の比較まで行う．また，\cite{kitaguchi1}では，通信遅延のみを品質として評価していたが，本研究では，帯域幅も計測し，評価する．
 
 \section{計測手法}
-基本的には\cite{inonius}と同じ
-
-HTTP GET/POSTによる通信を用いて計測
-
-ダウンロードの速度計測
-
-1MByteのデータを15秒間ダウンロードし続け、その際の帯域値を計測し平均値を求めます。200m秒毎に計算し、画面上のメーターに表示します。
-
-アップロードの速度計測
-
-HTTPのヘッダのみのデータを、HTTP POSTにより15秒間転送し続けて帯域値を計測し平均値を求めます。200m秒毎に計算し、画面上のメーターに表示します。
+HTTP GET/POSTによる通信を用いる．
 
 帯域幅を計測するために，10GのNICを用いて，サーバー側がボトルネックにならないようにする．
+IPv6ネットワークの現状を知りたいので，特定の機器との通信ではなくあらゆるユーザークライアントとの通信を測定する．
 
-取得する情報:IPアドレス，時刻，Upload，Download，遅延，Jitter，位置情報
+ダウンロードの速度計測では，1MByteのデータを15秒間ダウンロードし続け，帯域値を計測し，平均値を求める．
 
-\begin{figure}[hh]
+アップロードの速度計測では，HTTPのヘッダのみのデータを，HTTP POSTにより15秒間転送し続けて，帯域値を計測し，平均値を求める．
+
+他に取得し，保存する情報としてIPアドレス，時刻，RTT，Jitter，位置情報などがある．
+
+\begin{figure}[p]
 \centering
 \includegraphics[scale = 0.4]{Screenshot.png}
 \caption{現状のサイト(http://210.231.212.23/)}\label{ss}
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[p]
 \centering
 \includegraphics[scale = 0.25]{structure.png}
-\caption{ネットワーク構成}\label{struct}
+\caption{システム構成}\label{struct}
 \end{figure}
 
-
 \subsection{残タスク}
-目標の計測までの残タスクをまとめる．
+目標の計測環境を整えるための残タスクをまとめる．
 \subsubsection{デュアルスタック}
-サーバーをIPv4とIPv6の両方に対応させる．IPv4/6の計測完了後，ユーザーのネットワークがIPv6/4に対応していた場合，自動的にIPv6/4での計測を始める．
+サーバーをIPv4とIPv6の両方に対応させる．
+
+また，IPv4の計測完了後，ユーザーのネットワークがIPv6に対応していた場合，可能であれば，自動的にIPv6での計測を始める．逆にIPv6の計測から始めた場合も同様に，自動的にIPv4での計測を始める
 \subsubsection{ユーザー同定}
 本研究の目的は，IPv4とIPv6の通信状況の比較である．したがって，同一のユーザーからのIPv4とIPv6の通信を比較，評価する必要がある．
+
 北口らの研究\cite{kitaguchi1}では，urlパラメータに，userIdを持たせて，同じユーザーからの通信を識別している．これは\cite{kitaguchi2}でも利用されている．
 
-また，大量のアクセスが同じユーザー(ヘビーユーザー)からあった場合，その影響を考慮する必要があるので，IPv4 アドレス
-を基にユーザを特定する．
+また，大量のアクセスが同じユーザー(ヘビーユーザー)からあった場合，その影響を考慮する必要があるので，IPv4アドレスを基にユーザーを特定する．
 
-また，Route Views Project\cite{routeview}が公開しているBGPのフルルート情報を用いて，AS情報を求めている．
+また，Route Views Project\cite{routeview}が公開しているBGPのフルルート情報を用いて，AS情報を求める．
 
-\subsection{PPPoEやIPoEなど通信路の形態の推定}
+\subsubsection{PPPoEやIPoEなど通信路の形態の推定}
 \cite{kitaguchi1}では，AS番号がIPv4とIPv6で異なるとき
 \begin{itemize}
  \item IPv4とIPv6でそれぞれ別のAS経由でネイティブ接続している
@@ -116,22 +112,22 @@ HTTPのヘッダのみのデータを、HTTP POSTにより15秒間転送し続�
 
 \cite{kitaguchi2}では，MSS値により，ヘッダの長さを求めて，通信路を推定している．また，[1]での推定方法との比較をして，上記の仮定を否定している．
 
+本研究でも，MSSとTTLを計測したいと考えている．
+
 \subsubsection{UI/UX}
 
 \section{計測結果の分析}
-
-
-
-
-
+ユーザーを通信路の形態とホップ数で分類し，その通信遅延，帯域幅の分布をとり，IPv4とIPv6で比較して，その傾向を分析するつもりである．
 
 \begin{thebibliography}{9} % 文献数が10未満の時 {9}　　文献数が10以上の時 {99}
+\bibitem{price}
+IPv4.GLOBAL,https://auctions.ipv4.global/prior-sales
 \bibitem{kitaguchi1}
- 北口 善明， 伊波 源太， 永見 健一，``HTTP通信からみたIPv4とIPv6通信遅延の比較評価'' ，IEICE Technical Report， IA2010-37(2010-9)
+ 北口 善明， 伊波 源太， 永見 健一，``HTTP通信からみたIPv4とIPv6通信遅延の比較評価'' ,IEICE Technical Report， IA2010-37(2010-9)
 \bibitem{kitaguchi2}
- 北口 善明， 伊波 源太， 永見 健一，``HTTP通信を利用したIPv4とIPv6のネットワーク環境比較'' ，IPSJ SIG Technical Report， vol．2011-IOT-12 No．16
+ 北口 善明， 伊波 源太， 永見 健一，``HTTP通信を利用したIPv4とIPv6のネットワーク環境比較'' ,IPSJ SIG Technical Report, vol.2011-IOT-12 No.16
 \bibitem{routeview}
-University of Oregon Route Views Project，http://www．routeviews．org/， January 2005．
+University of Oregon Route Views Project，http://www.routeviews.org/， January 2005．
 \bibitem{inonius}
 iNonius Project，https://inonius.net/
 

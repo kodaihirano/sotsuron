@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.2-190131-2.6 (utf8.euc) (TeX Live 2019) (preloaded format=platex 2020.4.6)  16 APR 2020 19:46
+This is e-pTeX, Version 3.14159265-p3.8.2-190131-2.6 (utf8.euc) (TeX Live 2019) (preloaded format=platex 2020.4.6)  17 APR 2020 09:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -315,43 +315,45 @@ LaTeX Font Info:    External font `goth7 at7.3926pt' loaded for size
 File: Screenshot.png Graphic file (type bmp)
 <Screenshot.png>
 
-Overfull \hbox (6.75888pt too wide) in paragraph at lines 85--86
+Overfull \hbox (6.75888pt too wide) in paragraph at lines 80--81
  [][] 
  []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
 
 File: structure.png Graphic file (type bmp)
 <structure.png>
 
-Overfull \hbox (43.85068pt too wide) in paragraph at lines 110--111
+Overfull \hbox (43.85068pt too wide) in paragraph at lines 86--87
  [][] 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 118.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 108.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 118.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 108.
  [2]
-Overfull \hbox (10.52838pt too wide) in paragraph at lines 133--134
+Overfull \hbox (8.21234pt too wide) in paragraph at lines 124--125
+[]\OT1/cmr/m/n/7 IPv4.GLOBAL,https://auctions.ipv4.global/prior-sales 
+ []
+
+
+Overfull \hbox (67.24533pt too wide) in paragraph at lines 130--131
 []\OT1/cmr/m/n/7 University of Ore-gon Route Views Project\JY1/mc/m/n/7 ， \OT1
-/cmr/m/n/7 http://www\JY1/mc/m/n/7 ．
+/cmr/m/n/7 http://www.routeviews.org/\JY1/mc/m/n/7 ，
  []
 
 [3
 
 ] (./rinkou.aux) ) 
 Here is how much of TeX's memory you used:
- 2491 strings out of 493223
- 30289 string characters out of 6144416
+ 2492 strings out of 493223
+ 30296 string characters out of 6144416
  109553 words of memory out of 5000000
- 6423 multiletter control sequences out of 15000+600000
+ 6424 multiletter control sequences out of 15000+600000
  22437 words of font info for 89 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 27i,10n,27p,500b,308s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 27i,10n,27p,500b,307s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on rinkou.dvi (3 pages, 12900 bytes).
+Output written on rinkou.dvi (3 pages, 13480 bytes).
